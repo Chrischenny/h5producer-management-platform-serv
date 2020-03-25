@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var fs = require('fs')
 var multer = require('multer')
-var https = require('https')
+
 
 var login = require('./api/login');
 var deleteMovie = require('./api/deleteMovie');
@@ -16,10 +16,7 @@ var gameDetail = require('./api/gameDetail');
 var getallmovie = require('./api/getallmovie')
 var getallgame = require('./api/getallgame')
 
-const options={
-    key : fs.readFileSync("./https/server.key"),
-    cert : fs.readFileSync("./https/server.crt")
-}
+
 var count = 0;
 var eData = [];
 var eDate = [];
@@ -29,7 +26,7 @@ const TEN_MINUTES = 10*60;
 
 var upload = multer();
 var server = express();
-https.createServer(options,server).listen(2138);
+server.listen(2138);
 server.use(bodyParser.urlencoded());
 
 fs.readFile('./data/Date.json','utf-8',(err,data)=>{
